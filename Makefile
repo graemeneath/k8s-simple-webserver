@@ -6,6 +6,7 @@ all:
 	microk8s ctr images ls | grep nginx
 	microk8s.kubectl create deployment nginx-test --image=docker.io/library/mynginx:local
 	microk8s.kubectl scale deployment nginx-test --replicas=2
+	microk8s.kubectl expose deployment nginx-test --type=NodePort --port=80 --name=nginx-service
 	microk8s.kubectl get service | grep nginx
 
 stop:
