@@ -8,7 +8,7 @@ spec:
   rules:
   - http:
       paths:
-      - path: /bob
+      - path: /
         pathType: Prefix
         backend:
           serviceName: nginx-svc
