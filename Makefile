@@ -3,7 +3,7 @@ all:
 	docker save mynginx > myimage.tar
 	microk8s ctr image import myimage.tar
 	microk8s ctr images ls | grep nginx
-	microk8s.kubectl apply -f nginx-service.yaml
+	microk8s.kubectl apply -f nginx-service.yaml -f nginx-deployment.yaml -f nginx-ingress.yaml
 	microk8s.kubectl get service | grep nginx
 	microk8s.kubectl get ingress
 
