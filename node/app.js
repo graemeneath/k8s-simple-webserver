@@ -6,7 +6,8 @@ app.get('/', function (req, res) {
     fs = require('fs')
     fs.readFile('/pvc/dashboard/nolimits.json', 'utf8', function (err,data) {
         if (err) {
-            return console.log(err);
+            console.log(err);
+            res.send('{}');
         }
         res.send(data);
     });

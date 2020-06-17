@@ -1,0 +1,22 @@
+body {
+}
+
+#wrapper {
+  height: 100vh;
+}
+
+#header {
+  background-color: grey;
+  height: 32px;
+}
+
+#data {
+  height: 100%;
+  width: 100%;
+}
+
+#info {
+  height: 100%;
+  width: 100%;
+  resize: none;
+}

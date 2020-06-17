@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    $(function() {
+      var d = $('#info');
+
+      $('#tracks').append("This is a test!");
+    });
+  </script>
+
+  <head>
+    <title>Home Server Dashboard</title>
+    <link href="dashboard.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="refresh" content="60" />
+  </head>
+
+  <div id="wrapper">
+    <div id="header">
+      Nolimits Log
+    </div>
+    <div id="data">
+      <object id="info" data="nolimits.txt" width="100%" height="100%"></object>
+    </div>
+    <div id="tracks">
+    </div>
+  </div>
+</html>

@@ -1,0 +1,9 @@
+FROM alpine:3.11
+
+RUN apk add --no-cache npm
+RUN npm install express --no-save
+
+COPY node node
+COPY mock-dashboard /pvc/dashboard
+
+CMD ["node", "/node/app.js"]

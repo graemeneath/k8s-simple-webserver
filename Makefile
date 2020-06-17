@@ -18,3 +18,11 @@ stop:
 
 token:
 	microk8s.kubectl -n kube-system describe secret `microk8s.kubectl -n kube-system get secret | grep default-token | cut -d " " -f1`
+
+local: localstop
+	docker build -f Dockerfile.nodejs-local -t express:local .
+	docker run -d --name express_local -p 3000:3000 express:local
+
+localstop:
+	docker stop express_local || true
+	docker rm express_local || true

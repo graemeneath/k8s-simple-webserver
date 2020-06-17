@@ -1,0 +1,20 @@
+--------------------
+Wed Jun 17 06:00:00 UTC 2020
+No events to remove found.
+No events to add found.
+--------------------
+Wed Jun 17 07:00:00 UTC 2020
+No events to remove found.
+No events to add found.
+--------------------
+Wed Jun 17 08:00:00 UTC 2020
+No events to remove found.
+No events to add found.
+--------------------
+Wed Jun 17 09:00:00 UTC 2020
+deleting 2020-06-26 Croft FULL
+adding 2020-06-26 Croft
+--------------------
+Wed Jun 17 10:00:00 UTC 2020
+deleting 2020-07-14 Snetterton FULL
+adding 2020-07-14 Snetterton
