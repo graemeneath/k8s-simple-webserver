@@ -15,14 +15,14 @@ spec:
         app: nginx-pod
     spec:
       containers:
-      - name: nginx
+      - name: nginx-container
         image: docker.io/library/mynginx:local
         ports:
         - containerPort: 80
         volumeMounts:
         - mountPath: /var/www/html
           name: my-webserver-pv
-      - name: express
+      - name: express-container
         image: docker.io/library/express:local
         ports:
         - containerPort: 3000
