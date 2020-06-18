@@ -9,7 +9,10 @@ spec:
   - http:
       paths:
       - path: /
-        pathType: Prefix
         backend:
           serviceName: nginx-svc
+          servicePort: 80
+      - path: /info
+        backend:
+          serviceName: info-svc
           servicePort: 80
