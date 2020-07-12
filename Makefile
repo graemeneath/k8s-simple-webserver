@@ -5,7 +5,7 @@ all:
 	docker save express > express.tar
 	microk8s ctr image import mynginx.tar
 	microk8s ctr image import express.tar
-	microk8s.kubectl apply -f info-service.yaml -f nginx-service.yaml -f nginx-deployment.yaml -f nginx-ingress.yaml
+	microk8s.kubectl apply -f info-service.yaml -f nginx-service.yaml -f nginx-deployment.yaml -f nginx-ingress.yaml -f info-ingress.yaml
 	microk8s.kubectl get service nginx-svc
 	microk8s.kubectl get service info-svc
 	microk8s.kubectl get ingress
