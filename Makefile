@@ -1,4 +1,5 @@
 all:
+	microk8s enable ingress
 	docker build -f Dockerfile.nginx -t mynginx:local .
 	docker build -f Dockerfile.nodejs -t express:local .
 	docker save mynginx > mynginx.tar
