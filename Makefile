@@ -29,3 +29,6 @@ local: localstop
 localstop:
 	docker stop express_local || true
 	docker rm express_local || true
+
+shell:
+	microk8s.kubectl exec --stdin --tty `microk8s.kubectl get pods | grep nginx | awk '{ print $$1 }'` -- /bin/sh
