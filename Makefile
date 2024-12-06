@@ -11,6 +11,16 @@ all:
 	microk8s.kubectl get service info-svc
 	microk8s.kubectl get ingress
 
+nginx:
+	microk8s enable ingress
+	docker build -f Dockerfile.nginx -t mynginx:local .
+	docker save mynginx > mynginx.tar
+	microk8s ctr image import mynginx.tar
+	microk8s.kubectl apply -f nginx-service.yaml -f nginx-deployment.yaml -f nginx-ingress.yaml
+	microk8s.kubectl get service nginx-svc
+	microk8s.kubectl get ingress
+    
+
 stop:
 	microk8s.kubectl delete deployment nginx-deployment || true
 	microk8s.kubectl delete service info-svc || true
