@@ -7,6 +7,10 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   ingressClassName: nginx
+  tls:
+  - hosts:
+    - infinitytek.xyz
+    secretName: tls-secret
   rules:
   - http:
       paths:
@@ -17,4 +21,3 @@ spec:
             name: nginx-svc
             port:
               number: 80
-
