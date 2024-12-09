@@ -6,11 +6,13 @@ all:
 	docker save express > express.tar
 	microk8s ctr image import mynginx.tar
 	microk8s ctr image import express.tar
-	microk8s.kubectl create secret tls tls-secret --cert=certs/letsencrypt/live/infinitytek.xyz/cert.pem --key=certs/letsencrypt/live/infinitytek.xyz/privkey.pem || true
+	microk8s.kubectl delete secret tls-secret || true
+	microk8s.kubectl create secret tls tls-secret --cert=certs/letsencrypt/live/infinitytek.xyz/fullchain.pem --key=certs/letsencrypt/live/infinitytek.xyz/privkey.pem -n default
 	microk8s.kubectl apply -f info-service.yaml -f nginx-service.yaml -f nginx-deployment.yaml -f nginx-ingress.yaml -f info-ingress.yaml
+	microk8s.kubectl get deployment
 	microk8s.kubectl get service nginx-svc
-	microk8s.kubectl get service info-svc
 	microk8s.kubectl get ingress
+	microk8s.kubectl get secret tls-secret
 
 nginx:
 	microk8s enable ingress
