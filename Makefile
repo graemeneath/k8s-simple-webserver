@@ -1,7 +1,7 @@
 nginx: stop
 	microk8s enable ingress
 	microk8s.kubectl delete secret tls-secret || true
-	microk8s.kubectl create secret tls tls-secret --cert=certs/letsencrypt/live/infinitytek.xyz/fullchain.pem --key=certs/letsencrypt/live/infinitytek.xyz/privkey.pem -n default
+	microk8s.kubectl create secret tls tls-secret --cert=certs/fullchain1.pem --key=certs/privkey1.pem -n default
 	docker build -t mynginx:local .
 	docker save mynginx > mynginx.tar
 	microk8s ctr image import mynginx.tar
@@ -13,7 +13,7 @@ nginx: stop
 all:
 	microk8s enable ingress
 	microk8s.kubectl delete secret tls-secret || true
-	microk8s.kubectl create secret tls tls-secret --cert=certs/letsencrypt/live/infinitytek.xyz/fullchain.pem --key=certs/letsencrypt/live/infinitytek.xyz/privkey.pem -n default
+	microk8s.kubectl create secret tls tls-secret --cert=certs/fullchain1.pem --key=certs/privkey1.pem -n default
 	docker build -t mynginx:local .
 	docker build -f Dockerfile.nodejs -t express:local .
 	docker save mynginx > mynginx.tar

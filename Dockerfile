@@ -1,23 +1,15 @@
-# Use the official Nginx image as the base
-#FROM nginx:latest
+# Use the official NGINX base image
+FROM nginx:latest
 
-#COPY certs /etc
-
-# Copy Nginx configuration
-#COPY nginx.conf /etc/nginx/nginx.conf
-
-# Expose HTTP and HTTPS ports
-#EXPOSE 80 443
-
-
-FROM ubuntu
-
-RUN apt-get update
-RUN apt-get install -y nginx
-
-EXPOSE 8080 8443
-
-COPY certs /etc
+# Copy custom configuration (if any) to NGINX
 COPY nginx.conf /etc/nginx/nginx.conf
 
-CMD ["nginx", "-g", "daemon off;"]
+# Copy website files (if any) to the NGINX default root directory
+COPY www /var/www/html
+
+COPY certs /etc/nginx/certs
+
+# Expose ports
+EXPOSE 8080
+EXPOSE 8443
+
