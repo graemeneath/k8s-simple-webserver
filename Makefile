@@ -3,9 +3,11 @@ nginx: stop
 	microk8s.kubectl delete secret tls-secret || true
 	microk8s.kubectl create secret tls tls-secret --cert=certs/fullchain1.pem --key=certs/privkey1.pem -n default
 	docker build -t mynginx:local .
-	docker save mynginx > mynginx.tar
-	microk8s ctr image import mynginx.tar
-	microk8s.kubectl apply -f nginx-service.yaml -f nginx-deployment.yaml -f nginx-ingress.yaml
+	docker save mynginx > /tmp/mynginx.tar
+	microk8s ctr image import /tmp/mynginx.tar
+	microk8s.kubectl apply -f nginx-deployment.yaml
+	microk8s.kubectl apply -f nginx-service.yaml
+	microk8s.kubectl apply -f nginx-ingress.yaml
 	microk8s.kubectl get service nginx-svc
 	microk8s.kubectl get ingress
 	microk8s.kubectl get secret tls-secret
@@ -50,3 +52,9 @@ localstop:
 
 shell:
 	microk8s.kubectl exec --stdin --tty `microk8s.kubectl get pods | grep nginx-deploy | awk '{ print $$1 }'` -- /bin/sh
+
+shell-ingress:
+	microk8s.kubectl -n ingress exec --stdin --tty `microk8s.kubectl get pods -n ingress | grep nginx | awk '{ print $$1 }'` -- /bin/sh
+
+logs-ingress:
+	microk8s.kubectl logs -f -n ingress `microk8s.kubectl get pods -n ingress | grep nginx | awk '{ print $$1 }'`
