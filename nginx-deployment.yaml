@@ -23,13 +23,6 @@ spec:
         volumeMounts:
         - mountPath: /var/www/html
           name: my-webserver-pv
-      - name: express-container
-        image: docker.io/library/express:local
-        ports:
-        - containerPort: 3000
-        volumeMounts:
-        - mountPath: /pvc
-          name: my-webserver-pv
       volumes:
       - name: my-webserver-pv
         persistentVolumeClaim:
