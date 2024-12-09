@@ -1,8 +1,8 @@
-nginx:
+nginx: stop
 	microk8s enable ingress
 	microk8s.kubectl delete secret tls-secret || true
 	microk8s.kubectl create secret tls tls-secret --cert=certs/letsencrypt/live/infinitytek.xyz/fullchain.pem --key=certs/letsencrypt/live/infinitytek.xyz/privkey.pem -n default
-	docker build -f Dockerfile.nginx -t mynginx:local .
+	docker build -t mynginx:local .
 	docker save mynginx > mynginx.tar
 	microk8s ctr image import mynginx.tar
 	microk8s.kubectl apply -f nginx-service.yaml -f nginx-deployment.yaml -f nginx-ingress.yaml
@@ -14,7 +14,7 @@ all:
 	microk8s enable ingress
 	microk8s.kubectl delete secret tls-secret || true
 	microk8s.kubectl create secret tls tls-secret --cert=certs/letsencrypt/live/infinitytek.xyz/fullchain.pem --key=certs/letsencrypt/live/infinitytek.xyz/privkey.pem -n default
-	docker build -f Dockerfile.nginx -t mynginx:local .
+	docker build -t mynginx:local .
 	docker build -f Dockerfile.nodejs -t express:local .
 	docker save mynginx > mynginx.tar
 	docker save express > express.tar
@@ -41,7 +41,7 @@ token:
 local: localstop
 	#docker build -f Dockerfile.nodejs-local -t express:local .
 	#docker run -d --name express_local -p 3000:3000 express:local
-	docker build -f Dockerfile.nginx -t nginx_local .
+	docker build -t nginx_local .
 	docker run -d --name nginx_local -p 8080:8080 -p 8443:8443 nginx_local
 
 localstop:
