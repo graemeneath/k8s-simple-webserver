@@ -51,10 +51,10 @@ localstop:
 	docker rm nginx_local || true
 
 shell:
-	microk8s.kubectl exec --stdin --tty `microk8s.kubectl get pods | grep nginx-deploy | awk '{ print $$1 }'` -- /bin/sh
+	microk8s.kubectl exec --stdin --tty `microk8s.kubectl get pods | grep nginx-deploy | awk '{ print $$1 }'` -- /bin/bash
 
 shell-ingress:
-	microk8s.kubectl -n ingress exec --stdin --tty `microk8s.kubectl get pods -n ingress | grep nginx | awk '{ print $$1 }'` -- /bin/sh
+	microk8s.kubectl -n ingress exec --stdin --tty `microk8s.kubectl get pods -n ingress | grep nginx | awk '{ print $$1 }'` -- /bin/bash
 
 logs-ingress:
 	microk8s.kubectl logs -f -n ingress `microk8s.kubectl get pods -n ingress | grep nginx | awk '{ print $$1 }'`
