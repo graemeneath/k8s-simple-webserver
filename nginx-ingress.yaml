@@ -5,11 +5,16 @@ metadata:
   namespace: default
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
 spec:
   ingressClassName: nginx
+  tls:
+  - hosts:
+    - infinitytek.xyz
+    secretName: tls-secret
   rules:
-  - http:
+  - host: infinitytek.xyz
+    http:
       paths:
       - path: /
         pathType: Prefix
