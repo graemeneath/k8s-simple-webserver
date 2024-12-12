@@ -23,3 +23,10 @@ spec:
             name: nginx-svc
             port:
               number: 80
+      - path: /fincalc
+        pathType: Prefix
+        backend:
+          service:
+            name: fincalc-ui-svc
+            port:
+              number: 80
