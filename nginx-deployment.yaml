@@ -19,7 +19,6 @@ spec:
         image: docker.io/library/mynginx:local
         ports:
         - containerPort: 80
-        - containerPort: 443
         volumeMounts:
         - mountPath: /var/www/html
           name: my-webserver-pv
