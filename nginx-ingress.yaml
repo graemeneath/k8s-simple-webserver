@@ -26,6 +26,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: fincalc-ui-svc
+            name: finplan-ui-svc
             port:
               number: 80
