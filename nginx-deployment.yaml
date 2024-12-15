@@ -24,7 +24,7 @@ spec:
           name: my-webserver-pv
         livenessProbe:
           httpGet:
-            path: /
+            path: /liveness.html
             port: 80
           initialDelaySeconds: 5
           periodSeconds: 10
