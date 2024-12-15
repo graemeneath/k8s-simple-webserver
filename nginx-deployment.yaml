@@ -22,6 +22,15 @@ spec:
         volumeMounts:
         - mountPath: /var/www/html
           name: my-webserver-pv
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          timeoutSeconds: 2
+          failureThreshold: 3
+          successThreshold: 1
       volumes:
       - name: my-webserver-pv
         persistentVolumeClaim:
