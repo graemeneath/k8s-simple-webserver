@@ -1,7 +1,7 @@
 nginx: stop
 	microk8s enable ingress
 	microk8s.kubectl delete secret tls-secret || true
-	microk8s.kubectl create secret tls tls-secret --cert=certs/fullchain1.pem --key=certs/privkey1.pem -n default
+	sudo microk8s.kubectl create secret tls tls-secret --cert=/etc/letsencrypt/live/infinitytek.xyz/fullchain.pem --key=/etc/letsencrypt/live/infinitytek.xyz/privkey.pem -n default
 	docker build -t mynginx:local .
 	docker save mynginx > /tmp/mynginx.tar
 	microk8s ctr image import /tmp/mynginx.tar
@@ -37,3 +37,10 @@ shell-ingress:
 
 logs-ingress:
 	microk8s.kubectl logs -f -n ingress `microk8s.kubectl get pods -n ingress | grep nginx | awk '{ print $$1 }'`
+
+cert:
+	sudo certbot certificates
+	sudo certbot renew --dry-run
+
+cert-create:
+	sudo certbot certonly --webroot -w /pvc -d infinitytek.xyz
