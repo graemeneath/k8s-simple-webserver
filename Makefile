@@ -43,4 +43,4 @@ cert:
 	sudo certbot renew --dry-run
 
 cert-create:
-	sudo certbot certonly --webroot -w /pvc -d infinitytek.xyz
+	sudo certbot certonly --force-renewal --non-interactive --webroot -w /pvc -d infinitytek.xyz
