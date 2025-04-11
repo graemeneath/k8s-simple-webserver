@@ -3,6 +3,7 @@ nginx: stop
 	microk8s.kubectl delete secret tls-secret || true
 	sudo microk8s.kubectl create secret tls tls-secret --cert=/etc/letsencrypt/live/infinitytek.xyz/fullchain.pem --key=/etc/letsencrypt/live/infinitytek.xyz/privkey.pem -n default
 	docker build -t mynginx:local .
+	[ -f "/tmp/mynginx.tar" ] && rm "/tmp/mynginx.tar" || true
 	docker save mynginx > /tmp/mynginx.tar
 	microk8s ctr image import /tmp/mynginx.tar
 	microk8s.kubectl apply -f nginx-deployment.yaml
@@ -11,6 +12,9 @@ nginx: stop
 	microk8s.kubectl get service nginx-svc
 	microk8s.kubectl get ingress
 	microk8s.kubectl get secret tls-secret
+
+save:
+	[ -f "filename.txt" ] && rm "filename.txt"
     
 stop:
 	microk8s.kubectl delete deployment nginx-deployment || true
